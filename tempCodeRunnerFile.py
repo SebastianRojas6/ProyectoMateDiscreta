@@ -1,6 +1,6 @@
 import os
 
-# Define el árbol
+#Define el árbol
 class NodoArbolBinario:
     def __init__(self, nombre):
         self.nombre = nombre
@@ -34,21 +34,20 @@ def construir_arbol_directorio(ruta, raiz_arbol=None):
     try:
         elementos = sorted(os.listdir(ruta))  # Ordenar alfabéticamente
         for elemento in elementos:
-            if elemento != ".git":  # Ignorar el directorio .git
-                elemento_ruta = os.path.join(ruta, elemento)
-                if os.path.isdir(elemento_ruta):
-                    nuevo_nodo = NodoArbolBinario(elemento)
-                    raiz_arbol = insertar_nodo(raiz_arbol, nuevo_nodo)
-                    construir_arbol_directorio(elemento_ruta, nuevo_nodo)
-                else:
-                    nuevo_nodo = NodoArbolBinario(elemento)
-                    raiz_arbol = insertar_nodo(raiz_arbol, nuevo_nodo)
+            elemento_ruta = os.path.join(ruta, elemento)
+            if os.path.isdir(elemento_ruta):
+                nuevo_nodo = NodoArbolBinario(elemento)
+                raiz_arbol = insertar_nodo(raiz_arbol, nuevo_nodo)
+                construir_arbol_directorio(elemento_ruta, nuevo_nodo)
+            else:
+                nuevo_nodo = NodoArbolBinario(elemento)
+                raiz_arbol = insertar_nodo(raiz_arbol, nuevo_nodo)
     except PermissionError as e:
         print(f"No se puede acceder a {ruta}: {e}")
 
     return raiz_arbol
 
-# Cambia la ruta noma
+# Cambien su ruta noma
 ruta_carpeta = r"D:\Backup\Escritorio\Proyecto MateDiscreta"
 
 raiz_arbol_directorio = construir_arbol_directorio(ruta_carpeta)
