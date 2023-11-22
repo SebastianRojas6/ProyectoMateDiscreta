@@ -31,6 +31,8 @@ def construir_arbol_directorio(ruta, raiz_arbol=None):
     if raiz_arbol is None:
         raiz_arbol = NodoArbolBinario(ruta)
 
+
+#Esto ignora todo la carpeta del git xd
     try:
         elementos = sorted(os.listdir(ruta))  # Ordenar alfabéticamente
         for elemento in elementos:
